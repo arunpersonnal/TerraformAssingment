@@ -3,8 +3,8 @@ version: 0.2
 env:
   variables:
     TERRAFORM_VERSION: "0.14.6"
-    #TF_COMMAND: "apply"
-    TF_COMMAND: "destroy"
+    TF_COMMAND: "apply"
+    #TF_COMMAND: "destroy"
   parameter-store:
     AWS_ACCESS_KEY_ID: "PS_AWS_KEY_ID"
     AWS_SECRET_ACCESS_KEY: "PS_AWS_SECRET"

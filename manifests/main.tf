@@ -331,7 +331,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   max_size         = 4
   min_size         = 2
   desired_capacity = 2
-  health_check_grace_period = 60
+  health_check_grace_period = 10
   vpc_zone_identifier = [for pri-sub in aws_subnet.private-subnet : pri-sub.id]
   target_group_arns = [aws_lb_target_group.alb-target.arn]
   launch_configuration      = aws_launch_configuration.launch-config.id
@@ -570,7 +570,7 @@ resource "aws_cloudwatch_metric_alarm" "scale-up-cpu-alarm" {
   namespace           = "AWS/EC2"
   period              = "60"
   statistic           = "Average"
-  threshold           = "90"
+  threshold           = "10"
  
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.autoscaling_group.name
@@ -590,7 +590,7 @@ resource "aws_cloudwatch_metric_alarm" "scale-down-cpu-alarm" {
   namespace           = "AWS/EC2"
   period              = "60"
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = "5"
  
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.autoscaling_group.name
